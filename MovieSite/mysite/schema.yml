@@ -1,0 +1,2016 @@
+openapi: 3.0.3
+info:
+  title: Movie and Facts
+  version: 1.0.0
+  description: A project about the wonderful world of movies and programmes for a
+    theatre.
+paths:
+  /films/:
+    get:
+      operationId: films_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    post:
+      operationId: films_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Film'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Film'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /films/{format}:
+    get:
+      operationId: films_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    post:
+      operationId: films_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Film'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Film'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /films/{id}:
+    get:
+      operationId: films_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    put:
+      operationId: films_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Film'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Film'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    delete:
+      operationId: films_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/{id}{format}:
+    get:
+      operationId: films_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    put:
+      operationId: films_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Film'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Film'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+    delete:
+      operationId: films_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/{id}/add_screenings:
+    post:
+      operationId: films_add_screenings_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+  /films/{id}/add_screenings{format}:
+    post:
+      operationId: films_add_screenings_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+  /films/acted_in:
+    get:
+      operationId: films_acted_in_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    post:
+      operationId: films_acted_in_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+  /films/acted_in{format}:
+    get:
+      operationId: films_acted_in_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    post:
+      operationId: films_acted_in_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+  /films/acted_in/{id}:
+    get:
+      operationId: films_acted_in_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    put:
+      operationId: films_acted_in_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    delete:
+      operationId: films_acted_in_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/acted_in/{id}{format}:
+    get:
+      operationId: films_acted_in_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    put:
+      operationId: films_acted_in_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ActorsInFilm'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorsInFilm'
+          description: ''
+    delete:
+      operationId: films_acted_in_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/actors:
+    get:
+      operationId: films_actors_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    post:
+      operationId: films_actors_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+  /films/actors{format}:
+    get:
+      operationId: films_actors_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    post:
+      operationId: films_actors_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+  /films/actors/{id}:
+    get:
+      operationId: films_actors_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    put:
+      operationId: films_actors_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    delete:
+      operationId: films_actors_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/actors/{id}{format}:
+    get:
+      operationId: films_actors_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    put:
+      operationId: films_actors_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+    delete:
+      operationId: films_actors_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/film_on_location:
+    get:
+      operationId: films_film_on_location_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocation'
+          description: ''
+    post:
+      operationId: films_film_on_location_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocation'
+          description: ''
+  /films/film_on_location{format}:
+    get:
+      operationId: films_film_on_location_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocation'
+          description: ''
+    post:
+      operationId: films_film_on_location_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocation'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocation'
+          description: ''
+  /films/film_on_location/{id}:
+    get:
+      operationId: films_film_on_location_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    put:
+      operationId: films_film_on_location_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    delete:
+      operationId: films_film_on_location_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/film_on_location/{id}{format}:
+    get:
+      operationId: films_film_on_location_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    put:
+      operationId: films_film_on_location_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    delete:
+      operationId: films_film_on_location_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/films_by_screenings:
+    get:
+      operationId: films_films_by_screenings_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/films_by_screenings{format}:
+    get:
+      operationId: films_films_by_screenings_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/films_pay:
+    get:
+      operationId: films_films_pay_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/films_pay{format}:
+    get:
+      operationId: films_films_pay_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/filter/{filter_nr}:
+    get:
+      operationId: films_filter_retrieve
+      parameters:
+      - in: path
+        name: filter_nr
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/filter/{filter_nr}{format}:
+    get:
+      operationId: films_filter_formatted_retrieve
+      parameters:
+      - in: path
+        name: filter_nr
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+          description: ''
+  /films/locations:
+    get:
+      operationId: films_locations_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+    post:
+      operationId: films_locations_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Location'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+  /films/locations{format}:
+    get:
+      operationId: films_locations_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+    post:
+      operationId: films_locations_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Location'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+  /films/locations/{id}:
+    get:
+      operationId: films_locations_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    put:
+      operationId: films_locations_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    delete:
+      operationId: films_locations_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/locations/{id}{format}:
+    get:
+      operationId: films_locations_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    put:
+      operationId: films_locations_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmedOnLocationSerializerDetailed'
+          description: ''
+    delete:
+      operationId: films_locations_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/screenings:
+    get:
+      operationId: films_screenings_retrieve
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+    post:
+      operationId: films_screenings_create
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Screening'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+  /films/screenings{format}:
+    get:
+      operationId: films_screenings_formatted_retrieve_2
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+    post:
+      operationId: films_screenings_formatted_create
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Screening'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+  /films/screenings/{id}:
+    get:
+      operationId: films_screenings_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreeningWithFilm'
+          description: ''
+    put:
+      operationId: films_screenings_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Screening'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+    delete:
+      operationId: films_screenings_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /films/screenings/{id}{format}:
+    get:
+      operationId: films_screenings_formatted_retrieve
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScreeningWithFilm'
+          description: ''
+    put:
+      operationId: films_screenings_formatted_update
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Screening'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Screening'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening'
+          description: ''
+    delete:
+      operationId: films_screenings_formatted_destroy
+      parameters:
+      - in: path
+        name: format
+        schema:
+          type: string
+          enum:
+          - .json
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - films
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Actor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        birth_date:
+          type: string
+          format: date-time
+        married:
+          type: boolean
+        films:
+          type: integer
+        height:
+          type: number
+          format: double
+      required:
+      - birth_date
+      - films
+      - height
+      - id
+      - name
+    ActorsInFilm:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        role:
+          type: string
+          maxLength: 200
+        payment:
+          type: integer
+        film:
+          type: integer
+        actor:
+          type: integer
+      required:
+      - actor
+      - film
+      - id
+      - payment
+      - role
+    Film:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        release_date:
+          type: string
+          format: date-time
+        on_netfilx:
+          type: boolean
+        profit:
+          type: integer
+        rating:
+          type: number
+          format: double
+        nr_of_screenings:
+          type: integer
+          readOnly: true
+        average_pay:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - average_pay
+      - id
+      - name
+      - nr_of_screenings
+      - profit
+      - rating
+      - release_date
+    FilmedOnLocation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_main:
+          type: boolean
+        film:
+          type: integer
+        location:
+          type: integer
+      required:
+      - film
+      - id
+      - location
+    FilmedOnLocationSerializerDetailed:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_main:
+          type: boolean
+        film:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        location:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - film
+      - id
+      - location
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        country:
+          type: string
+          maxLength: 200
+        is_outdoors:
+          type: boolean
+      required:
+      - country
+      - id
+      - name
+    Nested:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        release_date:
+          type: string
+          format: date-time
+        on_netfilx:
+          type: boolean
+        profit:
+          type: integer
+        rating:
+          type: number
+          format: double
+      required:
+      - id
+      - name
+      - profit
+      - rating
+      - release_date
+    Screening:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        room:
+          type: string
+          maxLength: 200
+        date:
+          type: string
+          format: date-time
+          title: Screening date
+        imax:
+          type: boolean
+        tickets_bought:
+          type: integer
+        price:
+          type: number
+          format: double
+        film:
+          type: integer
+      required:
+      - date
+      - film
+      - id
+      - price
+      - room
+      - tickets_bought
+    ScreeningWithFilm:
+      type: object
+      properties:
+        room:
+          type: string
+          maxLength: 200
+        date:
+          type: string
+          format: date-time
+          title: Screening date
+        imax:
+          type: boolean
+        tickets_bought:
+          type: integer
+        price:
+          type: number
+          format: double
+        film:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - date
+      - film
+      - price
+      - room
+      - tickets_bought
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
