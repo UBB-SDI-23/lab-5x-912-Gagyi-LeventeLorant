@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('<int:id>/add_screenings', views.MultipleScreeningsToFilm.as_view(), name='multiple_screenings_to_film')
 
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
