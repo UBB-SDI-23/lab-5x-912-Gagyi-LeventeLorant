@@ -9,7 +9,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
-export const FilmAdd = () => {
+export const FilmUpdate = () => {
 	const navigate = useNavigate();
     const { filmId } = useParams();
 
