@@ -2,6 +2,7 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Button } from "@mui/mater
 import { Link, useLocation } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import ArticleIcon from '@mui/icons-material/Article';
 
 export const AppMenu = () => {
 	const location = useLocation();
@@ -32,6 +33,15 @@ export const AppMenu = () => {
 						sx={{ mr: 5 }}
 						startIcon={<LocalLibraryIcon />}>
 						Films
+					</Button>
+					<Button
+						variant={path.startsWith("/statistics") ? "outlined" : "text"}
+						to="/statistics"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}
+						startIcon={<ArticleIcon />}>
+						Statistics
 					</Button>
 				</Toolbar>
 			</AppBar>
