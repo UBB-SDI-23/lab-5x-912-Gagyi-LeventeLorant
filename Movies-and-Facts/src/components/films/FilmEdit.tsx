@@ -11,6 +11,7 @@ import axios from "axios";
 
 export const FilmAdd = () => {
 	const navigate = useNavigate();
+    const { filmId } = useParams();
 
 	const [film, setFilm] = useState<Film>({
 		name: "",
@@ -21,10 +22,28 @@ export const FilmAdd = () => {
         nr_of_screenings: 0
 	});
 
-	const addFilm = async (event: { preventDefault: () => void }) => {
+    useEffect(() => {
+        const fetchFilm = async () => {
+           try {
+              // const response = await axios.get(`${BACKEND_API_URL}/departments/${departmentId}`);
+              // setDepartment(response.data);
+              const response = await fetch(`${BACKEND_API_URL}/films/${filmId}`);
+              const film = await response.json();
+              setFilm(film);
+           } catch (error) {
+              console.log(error);
+           }
+        };
+        fetchFilm();
+     }, [filmId]);
+     
+
+
+
+	const updateFilm = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_API_URL}/films/`, film);
+			await axios.put(`${BACKEND_API_URL}/films/${filmId}`, film);
 			navigate("/films");
 		} catch (error) {
 			console.log(error);
@@ -38,13 +57,14 @@ export const FilmAdd = () => {
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/films`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
-					<form onSubmit={addFilm}>
+					<form onSubmit={updateFilm}>
 						<TextField
 							id="name"
 							label="Name"
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
+                            value={film.name}
 							onChange={(event) => setFilm({ ...film, name: event.target.value })}
 						/>
 						<TextField
@@ -53,6 +73,7 @@ export const FilmAdd = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
+                            value={film.release_date}
 							onChange={(event) => setFilm({ ...film, release_date: event.target.value })}
 						/>
 						<TextField
@@ -61,6 +82,7 @@ export const FilmAdd = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
+                            value={film.profit}
 							onChange={(event) => setFilm({ ...film, profit: Number(event.target.value )})}
 						/>
 						<TextField
@@ -69,6 +91,7 @@ export const FilmAdd = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
+                            value={film.rating}
 							onChange={(event) => setFilm({ ...film, rating: Number(event.target.value) })}
 						/>
                         <TextField
@@ -77,10 +100,11 @@ export const FilmAdd = () => {
 							variant="outlined"
 							fullWidth
 							sx={{ mb: 2 }}
+                            value={film.nr_of_screenings}
 							onChange={(event) => setFilm({ ...film, nr_of_screenings: Number(event.target.value) })}
 						/>
 
-						<Button type="submit">Add Film</Button>
+						<Button type="submit">Update Film</Button>
 					</form>
 				</CardContent>
 				<CardActions></CardActions>
