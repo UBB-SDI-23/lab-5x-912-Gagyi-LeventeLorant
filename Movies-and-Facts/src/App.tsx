@@ -12,7 +12,7 @@ import { AppMenu } from "./components/AppMenu";
 import { AllFilms } from "./components/films/AllFilms";
 import { FilmDetails } from "./components/films/FilmDetails";
 import { FilmDelete } from "./components/films/FilmDelete";
-// import { CourseAdd } from "./components/courses/CourseAdd";
+import { FilmAdd } from "./components/films/FilmAdd";
 
 function App() {
 	return (
@@ -26,7 +26,7 @@ function App() {
 					<Route path="/films/:filmId/details" element={<FilmDetails />} />
 					<Route path="/films/:filmId/edit" element={<FilmDetails />} />
 					<Route path="/films/:filmId/delete" element={<FilmDelete />} />
-					{/* <Route path="/courses/add" element={<CourseAdd />} /> */}
+					<Route path="/films/add" element={<FilmAdd />} />
 				</Routes>
 			</Router>
 		</React.Fragment>
