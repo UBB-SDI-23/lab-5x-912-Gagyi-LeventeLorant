@@ -1,7 +1,7 @@
 export interface Film{
     id: number;
     name: string;
-    release_date: Date;
+    release_date: string;
     on_netfilx: boolean;
     profit: number;
     rating: number;
