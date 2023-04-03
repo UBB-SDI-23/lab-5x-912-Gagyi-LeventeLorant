@@ -26,10 +26,14 @@ export const AllFilms = () => {
 	const [films, setFilms] = useState<Film[]>([]);
 
 	useEffect(() => {
-		fetch('${BACKEND_API_URL}/films/')
-		.then((res) => res.json())
-		.then((data) => setFilms(data));
-		}, []);
+		setLoading(true);
+		fetch(`${BACKEND_API_URL}/films/`)
+			.then((response) => response.json())
+			.then((data) => {
+				setFilms(data);
+				setLoading(false);
+			});
+	}, []);
 
 	return (
 		<Container>
