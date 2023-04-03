@@ -38,7 +38,7 @@ export const AllFilms = () => {
 	}, []);
 
 	const orderByRating=()=>{
-		const sorted = [...films].sort((a, b) => a.rating - b.rating);
+		const sorted = [...films].sort((a, b) => b.rating - a.rating);
 		setFilms(sorted);
 	}
 
