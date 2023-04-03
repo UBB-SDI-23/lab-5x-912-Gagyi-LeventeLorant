@@ -10,6 +10,8 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+	Toolbar,
+	Button,
 } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -35,6 +37,12 @@ export const AllFilms = () => {
 			});
 	}, []);
 
+	const orderByRating=()=>{
+		const sorted = [...films].sort((a, b) => a.rating - b.rating);
+		setFilms(sorted);
+	}
+
+
 	return (
 		<Container>
 			<h1>All films</h1>
@@ -42,11 +50,21 @@ export const AllFilms = () => {
 			{loading && <CircularProgress />}
 			{!loading && films.length === 0 && <p>No films found</p>}
 			{!loading && (
+				<Toolbar>
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/films/add`}>
 					<Tooltip title="Add a new film" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
+				<Button
+						onClick={orderByRating}
+						// component={Link}
+						// color="inherit"
+						// sx={{ mr: 5 }}
+						// startIcon={<LocalLibraryIcon />}
+						>Order By Rating
+					</Button>
+					</Toolbar>
 			)}
 			{!loading && films.length > 0 && (
 				<TableContainer component={Paper}>
