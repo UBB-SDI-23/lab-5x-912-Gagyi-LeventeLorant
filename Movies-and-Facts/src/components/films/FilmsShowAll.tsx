@@ -1,13 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Film } from "../../models/Film";
 
 export const FilmsShowAll = () => {
     const [films, setFilms] = useState([]);
 
-    fetch("https://app.swaggerhub.com/apis/GAGYILORANT/movie-and_facts/1.0.0#/films/films_retrieve")
+
+    useEffect(() => {
+    fetch("http://ec2-13-48-126-143.eu-north-1.compute.amazonaws.com/films/")
     .then((res) => res.json())
     .then((data) => setFilms(data));
-  
+    }, []);
+
+
+
+    if(films.length === 0){
+      return <div>No films</div>
+    }
     return (
       <div className="App">
         <h1>Films list</h1>
