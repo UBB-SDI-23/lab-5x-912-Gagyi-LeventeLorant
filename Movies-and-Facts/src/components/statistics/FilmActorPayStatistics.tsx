@@ -26,7 +26,7 @@ export const FilmActorPayStatistics = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/films/film_by_actor_payment_list/`)
+		fetch(`${BACKEND_API_URL}/films/films_pay/`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFilms(data);
