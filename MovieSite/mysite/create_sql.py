@@ -34,7 +34,7 @@ imax = fake.pybool()
 tickets_bought = fake.random_int(1, 100)
 price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
 
-screening_sql = "INSERT INTO films_film(name, date, tickets_bought, price, film)" \
+screening_sql = "INSERT INTO films_screening(name, date, tickets_bought, price, film)" \
                 " VALUES ('{}', '{}', '{}', '{}', 'SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1')" \
     .format(name, date, tickets_bought, price)
 
