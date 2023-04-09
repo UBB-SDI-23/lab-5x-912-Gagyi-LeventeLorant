@@ -52,6 +52,8 @@ with open('screening_insert.sql', 'w') as f:
             imax = fake.pybool()
             tickets_bought = fake.random_int(1, 100)
             price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
+            film_id = random.randint(1, 999999)
+
             screening_sql = screening_sql + ", ('{}', '{}', '{}', '{}', '{}', '{}')" \
                 .format(room, date, imax, tickets_bought, price, film_id)
 
@@ -104,6 +106,8 @@ with open('acted_in_film_insert.sql', 'w') as f:
         for j in range(n):
             role = fake.sentence(nb_words=1)
             payment = fake.random_int(10000, 1000000)
+            film_id = random.randint(1, 999999)
+            actor_id = random.randint(1, 999999)
 
             acted_in_film_sql = acted_in_film_sql + ", ('{}', '{}', '{}', '{}')"\
                                                     .format(film_id, actor_id, role, payment)
@@ -151,6 +155,8 @@ with open('film_on_location_insert.sql', 'w') as f:
         for j in range(n):
             nr_of_scenes = fake.random_int(1, 50)
             is_main = fake.pybool()
+            film_id = random.randint(1, 999999)
+            location_id = random.randint(1, 999999)
 
             film_on_location_sql = film_on_location_sql + ", ('{}', '{}', '{}', '{}')"\
                                                         .format(film_id, location_id, nr_of_scenes, is_main)
