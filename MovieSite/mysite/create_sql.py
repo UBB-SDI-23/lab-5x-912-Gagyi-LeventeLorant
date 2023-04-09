@@ -71,7 +71,7 @@ with open('actor_insert.sql', 'w') as f:
         films = fake.random_int(1, 100)
         height = 1 + fake.random_int(50, 99) / 100
 
-        actor_sql = "INSERT INTO films_screening(name, birth_date, married, films, height)" \
+        actor_sql = "INSERT INTO films_actor(name, birth_date, married, films, height)" \
                     " VALUES ('{}', '{}', '{}', '{}')" \
             .format(name, birth_date, married, films)
 
@@ -98,7 +98,7 @@ with open('acted_in_film_insert.sql', 'w') as f:
         film_id = random.randint(1, 999999)
         actor_id = random.randint(1, 999999)
 
-        acted_in_film_sql = "INSERT INTO films_screening(film_id, actor_id, role, payment)" \
+        acted_in_film_sql = "INSERT INTO films_actedinfilm(film_id, actor_id, role, payment)" \
                             " VALUES ('{}', " \
                             "'{}', '{}', '{}')" \
             .format(film_id, actor_id, role, payment)
@@ -124,7 +124,7 @@ with open('location_insert.sql', 'w') as f:
         country = fake.country()
         is_outdoors = fake.pybool()
 
-        location_sql = "INSERT INTO films_screening(film_id, actor_id, role, payment)" \
+        location_sql = "INSERT INTO films_location(film_id, actor_id, role, payment)" \
                        " VALUES ('{}', '{}', '{}')" \
             .format(name, country, is_outdoors)
 
@@ -148,7 +148,7 @@ with open('film_on_location_insert.sql', 'w') as f:
         film_id = random.randint(1, 999999)
         location_id = random.randint(1, 999999)
 
-        film_on_location_sql = "INSERT INTO films_screening(film_id, location_id, nr_of_scenes, is_main) VALUES " \
+        film_on_location_sql = "INSERT INTO films_filmonlocation(film_id, location_id, nr_of_scenes, is_main) VALUES " \
                                "('{}', '{}', '{}', '{}')" \
             .format(film_id, location_id, nr_of_scenes, is_main)
 
