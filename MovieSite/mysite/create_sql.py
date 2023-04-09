@@ -72,8 +72,8 @@ with open('actor_insert.sql', 'w') as f:
         height = 1 + fake.random_int(50, 99) / 100
 
         actor_sql = "INSERT INTO films_actor(name, birth_date, married, films, height)" \
-                    " VALUES ('{}', '{}', '{}', '{}')" \
-            .format(name, birth_date, married, films)
+                    " VALUES ('{}', '{}', '{}', '{}', '{}')" \
+            .format(name, birth_date, married, films, height)
 
         for j in range(n):
             name = fake.name()
@@ -124,7 +124,7 @@ with open('location_insert.sql', 'w') as f:
         country = fake.country()
         is_outdoors = fake.pybool()
 
-        location_sql = "INSERT INTO films_location(film_id, actor_id, role, payment)" \
+        location_sql = "INSERT INTO films_location(name, country, is_outdoors)" \
                        " VALUES ('{}', '{}', '{}')" \
             .format(name, country, is_outdoors)
 
