@@ -1,3 +1,5 @@
+import random
+
 from faker import Faker
 
 fake = Faker()
@@ -33,10 +35,11 @@ date = fake.date()
 imax = fake.pybool()
 tickets_bought = fake.random_int(1, 100)
 price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
+film = random.randint(1,n)
 
 screening_sql = "INSERT INTO films_screening(room, date, tickets_bought, price, film)" \
-                " VALUES ('{}', '{}', '{}', '{}', 'SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1')" \
-    .format(room, date, tickets_bought, price)
+                " VALUES ('{}', '{}', '{}', '{}', '{}')" \
+                .format(room, date, tickets_bought, price, film)
 
 for i in range(n):
     room = fake.name()
@@ -44,8 +47,9 @@ for i in range(n):
     imax = fake.pybool()
     tickets_bought = fake.random_int(1, 100)
     price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
-    screening_sql = screening_sql + ", ('{}', '{}', '{}', '{}', 'SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1')" \
-        .format(room, date, tickets_bought, price)
+    film = random.randint(1,n)
+    screening_sql = screening_sql + ", ('{}', '{}', '{}', '{}', '{}')" \
+        .format(room, date, tickets_bought, price, film)
 
 with open('screening_insert.sql', 'w') as f:
     f.write(screening_sql)
