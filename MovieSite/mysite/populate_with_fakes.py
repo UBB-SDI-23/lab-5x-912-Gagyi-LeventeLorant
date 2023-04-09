@@ -18,5 +18,5 @@ if __name__ == '__main__':
     n = 10000
     for _ in range(n):
 
-        Film.objects.create(name=fake.name(), release_date=fake.date(), on_netfilx=fake.pybool(), profit=fake.random_int(1000000, 10000000), rating=fake.random_float(1,9)+fake.random_float(0,10)/10)
-        Screening.objects.create(room=fake.name(), date=fake.date(),imax=fake.pybool(), tickets_bought=fake.random_int(1, 100), price= fake.random_float(5,25)+fake.random_float(0,100)/100, film=Film.objects.last())
+        Film.objects.create(name=fake.name(), release_date=fake.date(), on_netfilx=fake.pybool(), profit=fake.random_int(1000000, 10000000), rating=fake.random_int(1,9)+fake.random_int(0,10)/10)
+        Screening.objects.create(room=fake.name(), date=fake.date(),imax=fake.pybool(), tickets_bought=fake.random_int(1, 100), price= fake.random_int(5,25)+fake.random_int(0,100)/100, film=Film.objects.last())
