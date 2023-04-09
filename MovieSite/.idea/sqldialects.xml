@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/mysite/create_sql.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/mysite/film_insert.sql" dialect="GenericSQL" />
   </component>
 </project>

@@ -9,7 +9,6 @@ from django.forms import ModelForm
 
 
 class Film(models.Model):
-
     name = models.CharField(max_length=200)
     release_date = models.DateTimeField('Release date')
     on_netfilx = models.BooleanField(default=False)
@@ -19,7 +18,6 @@ class Film(models.Model):
     def __str__(self):
         return self.name
 
-
     @property
     def average_pay(self):
         if hasattr(self, '_average_pay'):
@@ -27,9 +25,7 @@ class Film(models.Model):
         return self.film.aggregate(Avg('payment'))["payment__avg"]
 
 
-
 class Screening(models.Model):
-
     room = models.CharField(max_length=200)
     date = models.DateTimeField('Screening date')
     imax = models.BooleanField(default=False)
@@ -42,7 +38,6 @@ class Screening(models.Model):
 
 
 class Actor(models.Model):
-
     name = models.CharField(max_length=200)
     birth_date = models.DateTimeField('Birth date')
     married = models.BooleanField(default=False)
@@ -54,7 +49,6 @@ class Actor(models.Model):
 
 
 class ActedInFilm(models.Model):
-
     film = models.ForeignKey(Film, related_name='film', on_delete=models.CASCADE)
     actor = models.ForeignKey(Actor, related_name='actors', on_delete=models.CASCADE)
     role = models.CharField(max_length=200)
@@ -64,10 +58,7 @@ class ActedInFilm(models.Model):
         return str(self.actor) + " in " + str(self.film)
 
 
-
-
 class Location(models.Model):
-
     name = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
     is_outdoors = models.BooleanField(default=False)
@@ -77,7 +68,6 @@ class Location(models.Model):
 
 
 class FilmOnLocation(models.Model):
-
     film = models.ForeignKey(Film, related_name='locationfilm', on_delete=models.CASCADE)
     location = models.ForeignKey(Location, related_name='locations', on_delete=models.CASCADE)
     nr_of_scenes = models.IntegerField
@@ -85,4 +75,3 @@ class FilmOnLocation(models.Model):
 
     def __str__(self):
         return str(self.film) + " shoot in " + str(self.location)
-
