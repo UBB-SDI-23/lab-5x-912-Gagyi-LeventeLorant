@@ -35,7 +35,7 @@ tickets_bought = fake.random_int(1, 100)
 price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
 
 screening_sql = "INSERT INTO films_screening(room, date, tickets_bought, price, film_id)" \
-                " VALUES ('{}', '{}', '{}', '{}', 'SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1')" \
+                " VALUES ('{}', '{}', '{}', '{}', (SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1))" \
     .format(room, date, tickets_bought, price)
 
 for i in range(n):
@@ -44,7 +44,7 @@ for i in range(n):
     imax = fake.pybool()
     tickets_bought = fake.random_int(1, 100)
     price = fake.random_int(5, 25) + fake.random_int(0, 100) / 100
-    screening_sql = screening_sql + ", ('{}', '{}', '{}', '{}', 'SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1')" \
+    screening_sql = screening_sql + ", ('{}', '{}', '{}', '{}', (SELECT id FROM films_film ORDER BY RANDOM() LIMIT 1))" \
         .format(room, date, tickets_bought, price)
 
 with open('screening_insert.sql', 'w') as f:
