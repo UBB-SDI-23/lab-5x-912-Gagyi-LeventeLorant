@@ -82,8 +82,8 @@ with open('actor_insert.sql', 'w') as f:
             films = fake.random_int(1, 100)
             height = 1 + fake.random_int(50, 99) / 100
 
-            actor_sql = actor_sql + ", ('{}', '{}', '{}', '{}')" \
-                .format(name, birth_date, married, films)
+            actor_sql = actor_sql + ", ('{}', '{}', '{}', '{}', '{}')" \
+                .format(name, birth_date, married, films, height)
 
         actor_sql = actor_sql + ";\n"
         f.write(actor_sql)
