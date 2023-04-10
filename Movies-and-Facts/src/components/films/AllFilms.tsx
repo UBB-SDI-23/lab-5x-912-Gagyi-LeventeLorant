@@ -33,7 +33,7 @@ export const AllFilms = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/films/`)
+		fetch(`${BACKEND_API_URL}/films?P=${currentPage}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFilms(data);
