@@ -14,7 +14,7 @@ class Film(models.Model):
     on_netfilx = models.BooleanField(default=False)
     profit = models.IntegerField()
     rating = models.FloatField()
-    description = models.CharField()
+    description = models.CharField(max_length=5000)
 
     def __str__(self):
         return self.name
