@@ -113,6 +113,8 @@ with open('actor_insert.sql', 'w') as f:
 
 print("actor_insert done")
 
+pairs = set()
+
 with open('acted_in_film_insert.sql', 'w') as f:
 
 
@@ -128,10 +130,16 @@ with open('acted_in_film_insert.sql', 'w') as f:
         film_id = random.randint(1, 999999)
         actor_id = random.randint(1, 999999)
 
+        while (film_id, actor_id) in pairs:
+            film_id = random.randint(1, 999999)
+            actor_id = random.randint(1, 999999)
+
         acted_in_film_sql = "INSERT INTO films_actedinfilm(film_id, actor_id, role, payment)" \
                             " VALUES ('{}', " \
                             "'{}', '{}', '{}')" \
             .format(film_id, actor_id, role, payment)
+
+        pairs.add((film_id, actor_id))
 
         for j in range(n):
             role = fake.sentence(nb_words=1)
@@ -139,8 +147,15 @@ with open('acted_in_film_insert.sql', 'w') as f:
             film_id = random.randint(1, 999999)
             actor_id = random.randint(1, 999999)
 
+            while (film_id, actor_id) in pairs:
+                film_id = random.randint(1, 999999)
+                actor_id = random.randint(1, 999999)
+
             acted_in_film_sql = acted_in_film_sql + ", ('{}', '{}', '{}', '{}')"\
                                                     .format(film_id, actor_id, role, payment)
+
+            pairs.add((film_id, actor_id))
+
 
         acted_in_film_sql = acted_in_film_sql + ";\n"
         f.write(acted_in_film_sql)
@@ -176,6 +191,8 @@ with open('location_insert.sql', 'w') as f:
 
 print("location_insert done")
 
+pairs = set()
+
 with open('film_on_location_insert.sql', 'w') as f:
 
     f.write('TRUNCATE TABLE films_filmonlocation RESTART IDENTITY CASCADE;\n')
@@ -190,9 +207,15 @@ with open('film_on_location_insert.sql', 'w') as f:
         film_id = random.randint(1, 999999)
         location_id = random.randint(1, 999999)
 
+        while (film_id, location_id) in pairs:
+            film_id = random.randint(1, 999999)
+            location_id = random.randint(1, 999999)
+
         film_on_location_sql = "INSERT INTO films_filmonlocation(film_id, location_id, nr_of_scenes, is_main) VALUES " \
                                "('{}', '{}', '{}', '{}')" \
             .format(film_id, location_id, nr_of_scenes, is_main)
+
+        pairs.add((film_id, location_id))
 
         for j in range(n):
             nr_of_scenes = fake.random_int(1, 50)
@@ -200,8 +223,14 @@ with open('film_on_location_insert.sql', 'w') as f:
             film_id = random.randint(1, 999999)
             location_id = random.randint(1, 999999)
 
+            while (film_id, location_id) in pairs:
+                film_id = random.randint(1, 999999)
+                location_id = random.randint(1, 999999)
+
             film_on_location_sql = film_on_location_sql + ", ('{}', '{}', '{}', '{}')"\
                                                         .format(film_id, location_id, nr_of_scenes, is_main)
+
+            pairs.add((film_id, location_id))
 
         film_on_location_sql = film_on_location_sql + ";\n"
         f.write(film_on_location_sql)
