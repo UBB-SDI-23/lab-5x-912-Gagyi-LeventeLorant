@@ -55,7 +55,7 @@ export const AllFilms = () => {
 		  fetch(`${BACKEND_API_URL}/films/?p=${currentPage+1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
-			setFilms(data.results);
+			setFilms(data);
 			setLoading(false);
 		  });
 		  
@@ -71,7 +71,7 @@ export const AllFilms = () => {
 		  fetch(`${BACKEND_API_URL}/films/?p=${currentPage-1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
-			setFilms(data.results);
+			setFilms(data);
 			setLoading(false);
 		  });
 		   
