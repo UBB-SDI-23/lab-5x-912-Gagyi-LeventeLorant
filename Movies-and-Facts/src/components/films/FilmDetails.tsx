@@ -36,6 +36,7 @@ export const FilmDetails = () => {
 					<p>Film Profit: {film?.profit}</p>
 					<p>Film Rating: {film?.rating}</p>
 					<p>Film Release Date: {film?.release_date}</p>
+					<p>Film Description: {film?.description}</p>
 				</CardContent>
 				<CardActions>
 					<IconButton component={Link} sx={{ mr: 3 }} to={`/films/${filmId}/edit`}>

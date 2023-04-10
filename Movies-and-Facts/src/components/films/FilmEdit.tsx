@@ -8,6 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { describe } from "node:test";
 
 export const FilmUpdate = () => {
 	const navigate = useNavigate();
@@ -19,7 +20,8 @@ export const FilmUpdate = () => {
         on_netfilx: false,
         profit: 0,
         rating: 0,
-        nr_of_screenings: 0
+        nr_of_screenings: 0,
+		description: ""
 	});
 
     useEffect(() => {
@@ -102,6 +104,15 @@ export const FilmUpdate = () => {
 							sx={{ mb: 2 }}
                             value={film.nr_of_screenings}
 							onChange={(event) => setFilm({ ...film, nr_of_screenings: Number(event.target.value) })}
+						/>
+						<TextField
+							id="description"
+							label="Description"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+                            value={film.description}
+							onChange={(event) => setFilm({ ...film, description: event.target.value })}
 						/>
 
 						<Button type="submit">Update Film</Button>

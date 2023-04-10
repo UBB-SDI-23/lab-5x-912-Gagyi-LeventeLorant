@@ -7,4 +7,5 @@ export interface Film{
     rating: number;
     nr_of_screenings?: number;
     average_pay?: number;
+    description: string;
 }
