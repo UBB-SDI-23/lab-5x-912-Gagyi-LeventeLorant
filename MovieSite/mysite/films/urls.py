@@ -4,7 +4,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
-    path('films', views.FilmList.as_view(), name='film'),
+    path('films/', views.FilmList.as_view(), name='film'),
     path('films/<int:id>', views.FilmDetails.as_view(), name='film_details'),
     path('films/filter/<int:filter_nr>', views.FilmFilter.as_view(), name='film_filter'),
 
