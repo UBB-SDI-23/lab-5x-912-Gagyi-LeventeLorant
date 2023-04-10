@@ -22,10 +22,14 @@ import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export const AllFilms = () => {
 	const [loading, setLoading] = useState(false);
 	const [films, setFilms] = useState<Film[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(1000000 / 10);
 
 	useEffect(() => {
 		setLoading(true);
@@ -42,6 +46,38 @@ export const AllFilms = () => {
 		setFilms(sorted);
 	}
 
+	const handleNextPage = () => {
+		if (currentPage < totalPages) {
+		  
+		  setCurrentPage(currentPage + 1);
+		  console.log(currentPage);
+		  setLoading(true);
+		  fetch(`${BACKEND_API_URL}/dogs/?p=${currentPage+1}`)
+		  .then((response) => response.json())
+		  .then((data) => {
+			setFilms(data.results);
+			setLoading(false);
+		  });
+		  
+		}
+	  };
+
+	  const handlePrevPage = () => {
+		if (currentPage > 1) {
+		  
+		  setCurrentPage(currentPage - 1);
+		  console.log(currentPage);
+		  setLoading(true);
+		  fetch(`${BACKEND_API_URL}/dogs/?p=${currentPage-1}`)
+		  .then((response) => response.json())
+		  .then((data) => {
+			setFilms(data.results);
+			setLoading(false);
+		  });
+		   
+		}
+	  };
+
 
 	return (
 		<Container>
@@ -51,6 +87,11 @@ export const AllFilms = () => {
 			{!loading && films.length === 0 && <p>No films found</p>}
 			{!loading && (
 				<Toolbar>
+					<IconButton onClick={handlePrevPage} style={{ marginRight:'370px'}} component={Link} sx={{ mr: 3 }} to={`/dogs/?p=${currentPage}`} disabled={currentPage === 1}>
+					<Tooltip title="Previous">
+					<ArrowBackIosIcon sx={{ color: "white" }} />
+					</Tooltip>
+				</IconButton>
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/films/add`}>
 					<Tooltip title="Add a new film" arrow>
 						<AddIcon color="primary" />
@@ -64,6 +105,11 @@ export const AllFilms = () => {
 						// startIcon={<LocalLibraryIcon />}
 						>Order By Rating
 					</Button>
+					<IconButton style={{ marginLeft:'370px'}} onClick={handleNextPage} component={Link} sx={{ mr: 3 }}  to={`/films/?page=${currentPage }`} disabled={currentPage === totalPages}>
+            		<Tooltip title="Next">
+             		<ArrowForwardIosIcon sx={{ color: "white" }} />
+            		</Tooltip>
+          			</IconButton>
 					</Toolbar>
 			)}
 			{!loading && films.length > 0 && (
