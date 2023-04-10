@@ -33,7 +33,7 @@ export const AllFilms = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/films?P=${currentPage}`)
+		fetch(`${BACKEND_API_URL}/films/?p=${currentPage}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFilms(data);
@@ -52,7 +52,7 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage + 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films?p=${currentPage+1}`)
+		  fetch(`${BACKEND_API_URL}/films/?p=${currentPage+1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
 			setFilms(data.results);
@@ -68,7 +68,7 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage - 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films?p=${currentPage-1}`)
+		  fetch(`${BACKEND_API_URL}/films/?p=${currentPage-1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
 			setFilms(data.results);
@@ -87,7 +87,7 @@ export const AllFilms = () => {
 			{!loading && films.length === 0 && <p>No films found</p>}
 			{!loading && (
 				<Toolbar>
-					<IconButton onClick={handlePrevPage} style={{ marginRight:'370px'}} component={Link} sx={{ mr: 3 }} to={`/films?p=${currentPage}`} disabled={currentPage === 1}>
+					<IconButton onClick={handlePrevPage} style={{ marginRight:'370px'}} component={Link} sx={{ mr: 3 }} to={`/films/?p=${currentPage}`} disabled={currentPage === 1}>
 					<Tooltip title="Previous">
 					<ArrowBackIosIcon sx={{ color: "white" }} />
 					</Tooltip>
@@ -105,7 +105,7 @@ export const AllFilms = () => {
 						// startIcon={<LocalLibraryIcon />}
 						>Order By Rating
 					</Button>
-					<IconButton style={{ marginLeft:'370px'}} onClick={handleNextPage} component={Link} sx={{ mr: 3 }}  to={`/films?p=${currentPage}`} disabled={currentPage === totalPages}>
+					<IconButton style={{ marginLeft:'370px'}} onClick={handleNextPage} component={Link} sx={{ mr: 3 }}  to={`/films/?p=${currentPage}`} disabled={currentPage === totalPages}>
             		<Tooltip title="Next">
              		<ArrowForwardIosIcon sx={{ color: "white" }} />
             		</Tooltip>
