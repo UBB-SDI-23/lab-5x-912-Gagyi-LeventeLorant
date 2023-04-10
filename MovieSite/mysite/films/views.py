@@ -730,7 +730,11 @@ class FilmsByActorPayment(APIView):
 
         films = Film.objects.annotate(avg_pay=Avg('film__payment')).order_by('-avg_pay')
 
-        serializer = FilmSerializer(films, many=True)
+        paginator = Paginator(films, 10)  # 10 objects per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        serializer = FilmSerializer(page_obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
