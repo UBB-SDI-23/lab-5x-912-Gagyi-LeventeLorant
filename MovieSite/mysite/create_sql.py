@@ -15,7 +15,11 @@ with open('film_insert.sql', 'w') as f:
         on_netfilx = fake.pybool()
         profit = fake.random_int(1000000, 10000000)
         rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
-        description = fake.paragraph(nb_sentences=6)
+        description = ""
+
+        for i in range(10):
+            description = description + fake.sentence(nb_words=10, variable_nb_words=False) + " "
+
 
         film_sql = "INSERT INTO films_film(name, release_date, on_netfilx, profit, rating, description)" \
                    " VALUES ('{}', '{}', '{}', '{}', '{}','{}')".format(name, release_date, on_netfilx, profit, rating,
@@ -27,9 +31,13 @@ with open('film_insert.sql', 'w') as f:
             on_netfilx = fake.pybool()
             profit = fake.random_int(1000000, 10000000)
             rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
-            description = fake.paragraph(nb_sentences=6)
-            film_sql = film_sql + ", ('{}', '{}', '{}', '{}', '{}')".format(name, release_date, on_netfilx, profit,
-                                                                            rating)
+            description = ""
+
+            for i in range(10):
+                description = description + fake.sentence(nb_words=10, variable_nb_words=False) + " "
+
+            film_sql = film_sql + ", ('{}', '{}', '{}', '{}', '{}', '{}')".format(name, release_date, on_netfilx, profit,
+                                                                            rating, description)
 
         film_sql = film_sql + ";\n"
         f.write(film_sql)
