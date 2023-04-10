@@ -7,6 +7,7 @@ fake = Faker()
 n = 1000
 
 with open('film_insert.sql', 'w') as f:
+    f.write('TRUNCATE TABLE films_film RESTART IDENTITY CASCADE;\n')
     for i in range(n):
 
         name = fake.sentence(nb_words=4)
@@ -14,9 +15,11 @@ with open('film_insert.sql', 'w') as f:
         on_netfilx = fake.pybool()
         profit = fake.random_int(1000000, 10000000)
         rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
+        description = fake.paragraph(nb_sentences=6)
 
-        film_sql = "INSERT INTO films_film(name, release_date, on_netfilx, profit, rating)" \
-                   " VALUES ('{}', '{}', '{}', '{}', '{}')".format(name, release_date, on_netfilx, profit, rating)
+        film_sql = "INSERT INTO films_film(name, release_date, on_netfilx, profit, rating, description)" \
+                   " VALUES ('{}', '{}', '{}', '{}', '{}','{}')".format(name, release_date, on_netfilx, profit, rating,
+                                                                        description)
 
         for j in range(n):
             name = fake.sentence(nb_words=4)
@@ -24,6 +27,7 @@ with open('film_insert.sql', 'w') as f:
             on_netfilx = fake.pybool()
             profit = fake.random_int(1000000, 10000000)
             rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
+            description = fake.paragraph(nb_sentences=6)
             film_sql = film_sql + ", ('{}', '{}', '{}', '{}', '{}')".format(name, release_date, on_netfilx, profit,
                                                                             rating)
 
@@ -33,6 +37,11 @@ with open('film_insert.sql', 'w') as f:
 print("film_insert done")
 
 with open('screening_insert.sql', 'w') as f:
+
+    f.write('TRUNCATE TABLE films_screening RESTART IDENTITY CASCADE;\n')
+
+    f.write('ALTER TABLE films_actor DROP CONSTRAINT films_screenings_film_id_c2e2d202_fk_films_film_id;\n')
+
     for i in range(n):
 
         room = fake.sentence(nb_words=1)[0] + str(fake.random_digit())
@@ -60,9 +69,15 @@ with open('screening_insert.sql', 'w') as f:
         screening_sql = screening_sql + ";\n"
         f.write(screening_sql)
 
+    f.write('ALTER TABLE films_actor ADD CONSTRAINT films_screenings_film_id_c2e2d202_fk_films_film_id FOREIGN KEY (film_id) REFERENCES films_film(id) DEFERRABLE INITIALLY DEFERRED;\n')
+
 print("screening_insert done")
 
 with open('actor_insert.sql', 'w') as f:
+
+
+    f.write('TRUNCATE TABLE films_actor RESTART IDENTITY CASCADE;\n')
+
     for i in range(n):
 
         name = fake.name()
@@ -91,6 +106,13 @@ with open('actor_insert.sql', 'w') as f:
 print("actor_insert done")
 
 with open('acted_in_film_insert.sql', 'w') as f:
+
+
+    f.write('TRUNCATE TABLE films_actedinfilm RESTART IDENTITY CASCADE;\n')
+
+    f.write('ALTER TABLE films_actedinfilm DROP CONSTRAINT films_actedinfilm_actor_id_4c0cb276_fk_films_actor_id;\n')
+    f.write('ALTER TABLE films_actedinfilm DROP CONSTRAINT films_actedinfilm_film_id_6263cfb1_fk_films_film_id;\n')
+
     for i in range(n * 10):
 
         role = fake.sentence(nb_words=1)
@@ -115,9 +137,15 @@ with open('acted_in_film_insert.sql', 'w') as f:
         acted_in_film_sql = acted_in_film_sql + ";\n"
         f.write(acted_in_film_sql)
 
+    f.write('ALTER TABLE films_actedinfilm ADD CONSTRAINT films_actedinfilm_actor_id_4c0cb276_fk_films_actor_id FOREIGN KEY (actor_id) REFERENCES films_actor(id) DEFERRABLE INITIALLY DEFERRED;\n')
+    f.write('ALTER TABLE films_actedinfilm ADD CONSTRAINT films_actedinfilm_film_id_6263cfb1_fk_films_film_id FOREIGN KEY (film_id) REFERENCES films_film(id) DEFERRABLE INITIALLY DEFERRED;\n')
+
 print("acted_in_film_insert done")
 
 with open('location_insert.sql', 'w') as f:
+
+    f.write('TRUNCATE TABLE films_location RESTART IDENTITY CASCADE;\n')
+
     for i in range(n):
 
         name = fake.sentence(nb_words=2)
@@ -141,6 +169,12 @@ with open('location_insert.sql', 'w') as f:
 print("location_insert done")
 
 with open('film_on_location_insert.sql', 'w') as f:
+
+    f.write('TRUNCATE TABLE films_filmonlocation RESTART IDENTITY CASCADE;\n')
+
+    f.write('ALTER TABLE films_filmonlocation DROP CONSTRAINT films_filmonlocation_film_id_96e67c87_fk_films_film_id;\n')
+    f.write('ALTER TABLE films_filmonlocation DROP CONSTRAINT films_filmonlocation_location_id_8dbdaf21_fk_films_location_id;\n')
+
     for i in range(n):
 
         nr_of_scenes = fake.random_int(1, 50)
@@ -163,5 +197,8 @@ with open('film_on_location_insert.sql', 'w') as f:
 
         film_on_location_sql = film_on_location_sql + ";\n"
         f.write(film_on_location_sql)
+
+    f.write('ALTER TABLE films_filmonlocation ADD CONSTRAINT films_filmonlocation_film_id_96e67c87_fk_films_film_id FOREIGN KEY (film_id) REFERENCES films_film(id) DEFERRABLE INITIALLY DEFERRED;\n')
+    f.write('ALTER TABLE films_filmonlocation ADD CONSTRAINT films_filmonlocation_location_id_8dbdaf21_fk_films_location_id FOREIGN KEY (location_id) REFERENCES films_location(id) DEFERRABLE INITIALLY DEFERRED;\n')
 
 print("film_on_location_insert done")
