@@ -18,7 +18,8 @@ export const FilmAdd = () => {
         on_netfilx: false,
         profit: 0,
         rating: 0,
-        nr_of_screenings: 0
+        nr_of_screenings: 0,
+		description: ""
 	});
 
 	const addFilm = async (event: { preventDefault: () => void }) => {
@@ -78,6 +79,14 @@ export const FilmAdd = () => {
 							fullWidth
 							sx={{ mb: 2 }}
 							onChange={(event) => setFilm({ ...film, nr_of_screenings: Number(event.target.value) })}
+						/>
+						<TextField
+							id="description"
+							label="Description"
+							variant="outlined"
+							fullWidth
+							sx={{ mb: 2 }}
+							onChange={(event) => setFilm({ ...film, description: event.target.value })}
 						/>
 
 						<Button type="submit">Add Film</Button>
