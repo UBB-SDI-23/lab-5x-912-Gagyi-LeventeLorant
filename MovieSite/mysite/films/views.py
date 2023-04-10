@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Count, Avg
 from django.shortcuts import render
 
@@ -47,12 +48,17 @@ class FilmList(APIView):
     def get(self, request, *args, **kwargs):
         # some actions
         films = Film.objects.all()
+
+        paginator = Paginator(films, 10)  # 10 objects per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         profit = request.query_params.get('profit')
 
         if profit is not None:
-            films = films.filter(profit__gte=profit)
+            page_obj = films.filter(profit__gte=profit)
 
-        serializer = FilmSerializer(films, many=True)
+        serializer = FilmSerializer(page_obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
