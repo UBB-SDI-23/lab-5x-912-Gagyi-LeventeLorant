@@ -172,7 +172,8 @@ with open('location_insert.sql', 'w') as f:
     for i in range(n):
 
         name = fake.sentence(nb_words=2)
-        country = fake.country()
+        country_raw = fake.country()
+        country = country_raw.replace("'"," ")
         is_outdoors = fake.pybool()
 
         location_sql = "INSERT INTO films_location(name, country, is_outdoors)" \
