@@ -4,9 +4,9 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
-    path('', views.FilmList.as_view(), name='film'),
-    path('<int:id>', views.FilmDetails.as_view(), name='film_details'),
-    path('filter/<int:filter_nr>', views.FilmFilter.as_view(), name='film_filter'),
+    path('films', views.FilmList.as_view(), name='film'),
+    path('films/<int:id>', views.FilmDetails.as_view(), name='film_details'),
+    path('films/filter/<int:filter_nr>', views.FilmFilter.as_view(), name='film_filter'),
 
     path('screenings', views.ScreeningList.as_view(), name='screenings'),
     path('screenings/<int:id>', views.ScreeningDetails.as_view(), name='screening_details'),
