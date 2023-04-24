@@ -27,7 +27,7 @@ export const AppMenu = () => {
 					</Typography>
 					<Button
 						variant={path.startsWith("/films") ? "outlined" : "text"}
-						to="/films?p=1"
+						to="/films?page=1"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}
