@@ -33,7 +33,7 @@ export const AllFilms = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/films?page=${currentPage}`)
+		fetch(`${BACKEND_API_URL}/films/?page=${currentPage}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFilms(data);
@@ -52,7 +52,7 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage + 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films?page=${currentPage+1}`)
+		  fetch(`${BACKEND_API_URL}/films/?page=${currentPage+1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
 			setFilms(data);
@@ -68,7 +68,7 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage - 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films?page=${currentPage-1}`)
+		  fetch(`${BACKEND_API_URL}/films/?page=${currentPage-1}`)
 		  .then((response) => response.json())
 		  .then((data) => {
 			setFilms(data);
