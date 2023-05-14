@@ -3,6 +3,7 @@ from datetime import timezone, datetime
 from django.db import models
 from django.db.models import Avg
 from django.forms import ModelForm
+from rest_framework.pagination import PageNumberPagination
 
 
 # Create your models here.
@@ -71,8 +72,11 @@ class Location(models.Model):
 class FilmOnLocation(models.Model):
     film = models.ForeignKey(Film, related_name='locationfilm', on_delete=models.CASCADE)
     location = models.ForeignKey(Location, related_name='locations', on_delete=models.CASCADE)
-    nr_of_scenes = models.IntegerField
+    nr_of_scenes = models.IntegerField()
     is_main = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.film) + " shoot in " + str(self.location)
+
+
+

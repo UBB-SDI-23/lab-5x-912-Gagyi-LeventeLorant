@@ -15,6 +15,9 @@ import { FilmDelete } from "./components/films/FilmDelete";
 import { FilmAdd } from "./components/films/FilmAdd";
 import { FilmUpdate } from "./components/films/FilmEdit"
 import { FilmActorPayStatistics } from "./components/statistics/FilmActorPayStatistics";
+import { AllScreenings } from './components/screenings/AllScreenings';
+import { AllActors } from './components/actors/AllActors';
+import { ActorDetails } from './components/actors/ActorDetails';
 
 
 function App() {
@@ -30,6 +33,19 @@ function App() {
 					<Route path="/films/:filmId/edit" element={<FilmUpdate />} />
 					<Route path="/films/:filmId/delete" element={<FilmDelete />} />
 					<Route path="/films/add" element={<FilmAdd />} />
+
+					<Route path="/screenings" element={<AllScreenings />} />
+					<Route path="/screenings/:screeningId/details" element={<FilmDetails />} />
+					<Route path="/screenings/:screeningId/edit" element={<FilmUpdate />} />
+					<Route path="/screenings/:screeningId/delete" element={<FilmDelete />} />
+					<Route path="/screenings/add" element={<FilmAdd />} />
+
+					<Route path="/actors" element={<AllActors />} />
+					<Route path="/actors/:actorId/details" element={<ActorDetails />} />
+					<Route path="/screenings/:screeningId/edit" element={<FilmUpdate />} />
+					<Route path="/screenings/:screeningId/delete" element={<FilmDelete />} />
+					<Route path="/screenings/add" element={<FilmAdd />} />
+
 					<Route path="/statistics" element={<FilmActorPayStatistics />} />
 				</Routes>
 			</Router>

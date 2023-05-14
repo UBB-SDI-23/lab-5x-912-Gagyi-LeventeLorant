@@ -17,7 +17,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
-import { Film } from "../../models/Film";
+import { Actor } from "../../models/Actor";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -25,26 +25,21 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-export const AllFilms = () => {
+export const AllActors = () => {
 	const [loading, setLoading] = useState(false);
-	const [films, setFilms] = useState<Film[]>([]);
+	const [actors, setActors] = useState<Actor[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = Math.ceil(1000000 / 10);
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`${BACKEND_API_URL}/films/?page=${currentPage}`)
+		fetch(`${BACKEND_API_URL}/actors/?page=${currentPage}`)
 			.then((response) => response.json())
 			.then((data) => {
-				setFilms(data);
+				setActors(data);
 				setLoading(false);
 			});
 	}, []);
-
-	const orderByRating=()=>{
-		const sorted = [...films].sort((a, b) => b.rating - a.rating);
-		setFilms(sorted);
-	}
 
 	const handleNextPage = () => {
 		if (currentPage < totalPages) {
@@ -52,10 +47,10 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage + 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films/?page=${currentPage}`)
+		  fetch(`${BACKEND_API_URL}/actors/?page=${currentPage}`)
 		  .then((response) => response.json())
 		  .then((data) => {
-			setFilms(data);
+			setActors(data);
 			setLoading(false);
 		  });
 		  
@@ -68,10 +63,10 @@ export const AllFilms = () => {
 		  setCurrentPage(currentPage - 1);
 		  console.log(currentPage);
 		  setLoading(true);
-		  fetch(`${BACKEND_API_URL}/films/?page=${currentPage}`)
+		  fetch(`${BACKEND_API_URL}/actors/?page=${currentPage}`)
 		  .then((response) => response.json())
 		  .then((data) => {
-			setFilms(data);
+			setActors(data);
 			setLoading(false);
 		  });
 		   
@@ -81,38 +76,30 @@ export const AllFilms = () => {
 
 	return (
 		<Container>
-			<h1>All films</h1>
+			<h1>All actors</h1>
 
 			{loading && <CircularProgress />}
-			{!loading && films.length === 0 && <p>No films found</p>}
+			{!loading && actors.length === 0 && <p>No actors found</p>}
 			{!loading && (
 				<Toolbar>
-					<IconButton onClick={handlePrevPage} style={{ marginRight:'370px'}} component={Link} sx={{ mr: 3 }} to={`/films/?p=${currentPage}`} disabled={currentPage === 1}>
+					<IconButton onClick={handlePrevPage} style={{ marginRight:'370px'}} component={Link} sx={{ mr: 3 }} to={`/actors/?p=${currentPage}`} disabled={currentPage === 1}>
 					<Tooltip title="Previous">
 					<ArrowBackIosIcon sx={{ color: "white" }} />
 					</Tooltip>
 				</IconButton>
-				<IconButton component={Link} sx={{ mr: 3 }} to={`/films/add`}>
-					<Tooltip title="Add a new film" arrow>
+				<IconButton component={Link} sx={{ mr: 3 }} to={`/actors/add`}>
+					<Tooltip title="Add a new actor" arrow>
 						<AddIcon color="primary" />
 					</Tooltip>
 				</IconButton>
-				<Button
-						onClick={orderByRating}
-						// component={Link}
-						// color="inherit"
-						// sx={{ mr: 5 }}
-						// startIcon={<LocalLibraryIcon />}
-						>Order By Rating
-					</Button>
-					<IconButton style={{ marginLeft:'370px'}} onClick={handleNextPage} component={Link} sx={{ mr: 3 }}  to={`/films/?p=${currentPage}`} disabled={currentPage === totalPages}>
+					<IconButton style={{ marginLeft:'370px'}} onClick={handleNextPage} component={Link} sx={{ mr: 3 }}  to={`/actors/?p=${currentPage}`} disabled={currentPage === totalPages}>
             		<Tooltip title="Next">
              		<ArrowForwardIosIcon sx={{ color: "white" }} />
             		</Tooltip>
           			</IconButton>
 					</Toolbar>
 			)}
-			{!loading && films.length > 0 && (
+			{!loading && actors.length > 0 && (
 				<TableContainer component={Paper}>
 					<Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
@@ -125,33 +112,33 @@ export const AllFilms = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{films.map((film, index) => (
-								<TableRow key={film.id}>
+							{actors.map((actor, index) => (
+								<TableRow key={actor.id}>
 									<TableCell component="th" scope="row">
 										{index + 1}
 									</TableCell>
 									<TableCell component="th" scope="row">
-										<Link to={`/films/${film.id}/details`} title="View film details">
-											{film.name}
+										<Link to={`/actors/${actor.id}/details`} title="View actor details">
+											{actor.name}
 										</Link>
 									</TableCell>
-									<TableCell align="right">{film.release_date}</TableCell>
-									<TableCell align="right">{film.rating}</TableCell>
+									<TableCell align="right">{actor.birth_date}</TableCell>
+									<TableCell align="right">{actor.height}</TableCell>
 									<TableCell align="right">
 										<IconButton
 											component={Link}
 											sx={{ mr: 3 }}
-											to={`/films/${film.id}/details`}>
-											<Tooltip title="View film details" arrow>
+											to={`/actors/${actor.id}/details`}>
+											<Tooltip title="View actor details" arrow>
 												<ReadMoreIcon color="primary" />
 											</Tooltip>
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/films/${film.id}/edit`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/actors/${actor.id}/edit`}>
 											<EditIcon />
 										</IconButton>
 
-										<IconButton component={Link} sx={{ mr: 3 }} to={`/films/${film.id}/delete`}>
+										<IconButton component={Link} sx={{ mr: 3 }} to={`/actors/${actor.id}/delete`}>
 											<DeleteForeverIcon sx={{ color: "red" }} />
 										</IconButton>
 									</TableCell>

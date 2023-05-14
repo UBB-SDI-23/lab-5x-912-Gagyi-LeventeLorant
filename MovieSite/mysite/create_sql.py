@@ -5,7 +5,7 @@ from faker import Faker
 fake = Faker()
 
 n = 1000
-
+'''
 with open('film_insert.sql', 'w') as f:
     f.write('TRUNCATE TABLE films_film RESTART IDENTITY CASCADE;\n')
     for i in range(n):
@@ -17,7 +17,7 @@ with open('film_insert.sql', 'w') as f:
         rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
         description = ""
 
-        for i in range(10):
+        for k in range(10):
             description = description + fake.sentence(nb_words=10, variable_nb_words=False) + " "
 
 
@@ -33,7 +33,7 @@ with open('film_insert.sql', 'w') as f:
             rating = fake.random_int(1, 9) + fake.random_int(0, 10) / 10
             description = ""
 
-            for i in range(10):
+            for l in range(10):
                 description = description + fake.sentence(nb_words=10, variable_nb_words=False) + " "
 
             film_sql = film_sql + ", ('{}', '{}', '{}', '{}', '{}', '{}')".format(name, release_date, on_netfilx, profit,
@@ -112,7 +112,7 @@ with open('actor_insert.sql', 'w') as f:
         f.write(actor_sql)
 
 print("actor_insert done")
-
+'''
 pairs = set()
 
 with open('acted_in_film_insert.sql', 'w') as f:

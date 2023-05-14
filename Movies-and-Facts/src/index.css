@@ -26,7 +26,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  align-items: top;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -66,4 +67,13 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.toolbar {
+  background-color: rgb(255, 115, 0);
+}
+
+
+.toolIcon:hover {
+    color: rgb(255, 187, 0);
 }
